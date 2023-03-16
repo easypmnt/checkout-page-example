@@ -29,6 +29,8 @@ function renderStateView({
     error,
     payment,
     tx,
+    applyBonus,
+    setApplyBonus,
 }: {
     state: State
     currencies: { sumbol: string, mint: string }[]
@@ -37,6 +39,8 @@ function renderStateView({
     error: string
     payment: PaymentLink
     tx: any
+    applyBonus: boolean
+    setApplyBonus: (apply: boolean) => void
 }) {
     switch (state) {
         case State.SelectCurrency:
@@ -45,6 +49,8 @@ function renderStateView({
                     currencies={currencies}
                     selectCurrency={setSelectedCurrency}
                     setModalOpen={setModalOpen}
+                    applyBonus={applyBonus}
+                    setApplyBonus={setApplyBonus}
                 />
             )
         case State.Loading:
@@ -70,7 +76,7 @@ function renderStateView({
             )
         case State.Success:
             return (
-                <Success setModalOpen={setModalOpen} bonusAmount={tx?.accrued_bonus_amount} bonusDecimals={9} />
+                <Success setModalOpen={setModalOpen} bonusAmount={tx?.accrued_bonus_amount} bonusDecimals={6} />
             )
     }
 }
@@ -113,6 +119,7 @@ type PaymentLink = {
 export default function QuickPayModal({ open, setOpen, amount }: { open: boolean, setOpen: any, amount: number }) {
     const [state, setState] = useState(State.SelectCurrency)
     const [selectedCurrency, setSelectedCurrency] = useState('')
+    const [applyBonus, setApplyBonus] = useState(false)
     const [error, setError] = useState('')
     const [payment, setPayment] = useState<PaymentLink>()
     const [clientOpen, setClientOpen] = useState(false)
@@ -132,6 +139,7 @@ export default function QuickPayModal({ open, setOpen, amount }: { open: boolean
                 body: JSON.stringify({
                     amount: amount,
                     currency: selectedCurrency,
+                    applyBonus: applyBonus,
                 })
             }).then((res) => {
                 console.debug('res', res)
@@ -230,7 +238,9 @@ export default function QuickPayModal({ open, setOpen, amount }: { open: boolean
                                     setSelectedCurrency,
                                     error: error,
                                     payment: payment || { paymentId: '', inAmount: 0, inCurrency: '', outAmount: 0, outCurrency: '', paymentLink: '', error: '' },
-                                    tx: tx
+                                    tx: tx,
+                                    applyBonus,
+                                    setApplyBonus
                                 })}
                             </Dialog.Panel>
                         </Transition.Child>

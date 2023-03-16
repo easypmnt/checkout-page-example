@@ -20,8 +20,6 @@ export default async function handler(
         return
     }
 
-    const merchantCurrency = 'So11111111111111111111111111111111111111112'
-
     const client = new OAuth2Client({
         clientId: process.env.CLIENT_ID!,
         clientSecret: process.env.CLIENT_SECRET!,
@@ -53,9 +51,9 @@ export default async function handler(
 
         const genLinkReqData = {
             mint: req.body.currency,
-            apply_bonus: "true",
+            apply_bonus: req.body.applyBonus ?? false,
         }
-        const resultLink = await client.post(`${process.env.GENERATE_PAYMENT_LINK_URL!}/${resultPayment.data.payment_id}/link`, genLinkReqData)
+        const resultLink = await client.post(`${process.env.GENERATE_PAYMENT_LINK_URL!}/${resultPayment.data.payment.id}/link`, genLinkReqData)
         console.log('resultLink', resultLink)
         if (resultLink.data.error) {
             res.status(resultLink.data.code).json({
@@ -65,12 +63,12 @@ export default async function handler(
         }
 
         var resultExchange = null
-        if (req.body.currency !== merchantCurrency) {
+        if (req.body.currency !== resultPayment.data.payment.destination_mint) {
             console.log('Getting exchange rate');
             const exchangeReqData = {
                 in_currency: req.body.currency,
-                out_currency: 'So11111111111111111111111111111111111111112',
-                amount: req.body.amount,
+                out_currency: resultPayment.data.payment.destination_mint,
+                amount: resultPayment.data.payment.amount,
                 swap_mode: 'ExactOut'
             }
             resultExchange = await client.post(process.env.EXCHANGE_RATE_URL!, exchangeReqData)
@@ -87,11 +85,11 @@ export default async function handler(
         console.log('Returning response');
 
         res.status(200).json({
-            paymentId: resultPayment.data.payment_id,
+            paymentId: resultPayment.data.payment.id,
             inCurrency: req.body.currency,
             inAmount: resultExchange ? resultExchange.data.exchange_rate.inAmount : req.body.amount,
             outAmount: resultExchange ? resultExchange.data.exchange_rate.outAmount : req.body.amount,
-            outCurrency: resultExchange ? resultExchange.data.exchange_rate.outCurrency : merchantCurrency,
+            outCurrency: resultExchange ? resultExchange.data.exchange_rate.outCurrency : resultPayment.data.payment.destination_mint,
             paymentLink: resultLink.data.link
         })
 

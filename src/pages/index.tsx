@@ -141,7 +141,7 @@ const product = {
   name: 'Everyday Ruck Snack',
   href: '#',
   price: '$0.10',
-  amountInUsdc: 10000000,
+  amountInUsdc: 100000,
   description:
     "Don't compromise on snack-carrying capacity with this lightweight and spacious bag. The drawstring top keeps all your favorite chips, crisps, fries, biscuits, crackers, and cookies secure.",
   imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg',
@@ -306,7 +306,7 @@ export default function Home() {
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <Image src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
+                                <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
                               </div>
                               <a href={item.href} className="mt-6 block font-medium text-gray-900">
                                 <span className="absolute inset-0 z-10" aria-hidden="true" />
@@ -368,7 +368,7 @@ export default function Home() {
 
                 <div className="border-t border-gray-200 py-6 px-4">
                   <a href="#" className="-m-2 flex items-center p-2">
-                    <Image
+                    <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
@@ -404,7 +404,7 @@ export default function Home() {
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
                   <span className="sr-only">Your Company</span>
-                  <Image
+                  <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
@@ -452,7 +452,7 @@ export default function Home() {
                                       {category.featured.map((item) => (
                                         <div key={item.name} className="group relative text-base sm:text-sm">
                                           <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <Image
+                                            <img
                                               src={item.imageSrc}
                                               alt={item.imageAlt}
                                               className="object-cover object-center"
@@ -525,7 +525,7 @@ export default function Home() {
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                    <Image
+                    <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
@@ -639,7 +639,7 @@ export default function Home() {
             {/* Product image */}
             <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
-                <Image
+                <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
                   className="h-full w-full object-cover object-center"
@@ -744,7 +744,7 @@ export default function Home() {
             <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
               <div>
                 <div className="aspect-w-3 aspect-h-2 w-full overflow-hidden rounded-lg">
-                  <Image
+                  <img
                     src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg"
                     alt="Drawstring top with elastic loop closure and textured interior padding."
                     className="h-full w-full object-cover object-center"
@@ -757,7 +757,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="aspect-w-3 aspect-h-2 w-full overflow-hidden rounded-lg">
-                  <Image
+                  <img
                     src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-02.jpg"
                     alt="Front zipper pouch with included key ring."
                     className="h-full w-full object-cover object-center"
@@ -779,7 +779,7 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
               {policies.map((policy) => (
                 <div key={policy.name}>
-                  <Image src={policy.imageSrc} alt="" className="h-24 w-auto" />
+                  <img src={policy.imageSrc} alt="" className="h-24 w-auto" />
                   <h3 className="mt-6 text-base font-medium text-gray-900">{policy.name}</h3>
                   <p className="mt-3 text-base text-gray-500">{policy.description}</p>
                 </div>
@@ -876,7 +876,7 @@ export default function Home() {
                   {reviews.featured.map((review) => (
                     <div key={review.id} className="py-12">
                       <div className="flex items-center">
-                        <Image src={review.avatarSrc} alt={`${review.author}.`} className="h-12 w-12 rounded-full" />
+                        <img src={review.avatarSrc} alt={`${review.author}.`} className="h-12 w-12 rounded-full" />
                         <div className="ml-4">
                           <h4 className="text-sm font-bold text-gray-900">{review.author}</h4>
                           <div className="mt-1 flex items-center">
@@ -917,7 +917,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-flow-col md:auto-rows-min md:grid-cols-12 md:gap-x-8 md:gap-y-16">
               {/* Image section */}
               <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
-                <Image
+                <img
                   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                   alt=""
                   className="h-8 w-auto"
