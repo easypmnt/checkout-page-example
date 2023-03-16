@@ -30,7 +30,7 @@ export default function Success({
                         <div className="overflow-hidden rounded-lg bg-indigo-50 mt-2">
                             <div className="px-4 py-5 sm:p-6 text-center text-gray-600 text-sm">
                                 <div className='flex flex-col'>
-                                    <span>You've got</span>
+                                    <span>You have got</span>
                                     <span className='text-lg font-bold text-gray-900'>
                                         {bonusAmount / (10 ** bonusDecimals)}
                                     </span>

@@ -153,7 +153,7 @@ export default function QuickPayModal({ open, setOpen, amount }: { open: boolean
             })
         }
 
-    }, [selectedCurrency, open])
+    }, [selectedCurrency, open, amount])
 
     useEffect(() => {
         if (payment?.paymentId && !clientOpen) {
